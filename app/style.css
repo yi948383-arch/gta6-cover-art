@@ -1,0 +1,45 @@
+/* Neon Shore editor: a dark neon console beside the live cover preview. */
+html, body { margin: 0; height: 100%; background: #14101d; color: #f2eef7; font: 15px/1.45 system-ui, sans-serif; }
+.app { display: flex; gap: 20px; height: 100vh; padding: 18px; box-sizing: border-box; }
+.controls { width: 330px; flex: none; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding-right: 6px; }
+.controls header h1 {
+  margin: 0; font-size: 30px; letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #ffb347, #ff5e7a 55%, #ff2e88);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.controls header p { margin: 6px 0 0; color: #b9b0c9; font-size: 13.5px; }
+.group { background: #1e1830; border: 1px solid #332a4d; border-radius: 12px; padding: 12px 14px; }
+.group h2 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; color: #ffd166; }
+.hint { margin: 0 0 8px; color: #b9b0c9; font-size: 12.5px; }
+label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 13px; margin-bottom: 8px; }
+label.check { flex-direction: row; align-items: center; gap: 8px; font-weight: 500; margin-bottom: 4px; }
+input[type=text] { font: inherit; padding: 8px 10px; border: 1px solid #4a3f66; border-radius: 8px; background: #14101d; color: #f2eef7; }
+input[type=text]:focus { outline: 2px solid #ff2e88; outline-offset: 1px; }
+input[type=range] { accent-color: #ff2e88; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+button {
+  font: inherit; font-weight: 600; font-size: 13px; padding: 8px 11px; border: 1px solid #4a3f66;
+  border-radius: 8px; background: #2a2340; color: #f2eef7; cursor: pointer;
+}
+button:hover { border-color: #ff5e7a; }
+button.on { background: linear-gradient(90deg, #ff7e5f, #ff2e88); border-color: transparent; color: #fff; }
+button.primary { width: 100%; padding: 12px; font-size: 15px; background: linear-gradient(90deg, #ff7e5f, #ff2e88); border: 0; color: #fff; }
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+.slot {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  border: 2px dashed #4a3f66; border-radius: 8px; padding: 6px 4px; cursor: pointer; margin: 0;
+  font-size: 11px; font-weight: 600; color: #b9b0c9; text-align: center;
+}
+.slot img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 5px; background: #14101d; }
+.slot img:not([src]) { visibility: hidden; }
+.slot input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.slot.active { border-style: solid; border-color: #ffd166; color: #ffd166; }
+.slot.filled { border-style: solid; border-color: #4a3f66; }
+#status { margin: 8px 0 0; color: #8fe3c0; font-size: 13px; min-height: 18px; }
+.preview { flex: 1; display: flex; align-items: center; justify-content: center; min-width: 0; background: #0d0a16; border-radius: 14px; border: 1px solid #2a2340; overflow: hidden; }
+.preview canvas { display: block; box-shadow: 0 12px 44px rgba(0, 0, 0, 0.55); cursor: grab; touch-action: none; }
+.preview canvas:active { cursor: grabbing; }
+body.shot-cover .controls { display: none; }
+body.shot-cover .app { padding: 0; gap: 0; }
+body.shot-cover .preview { border: 0; border-radius: 0; }
+body.shot-cover .preview canvas { width: 100vw !important; height: 100vh !important; box-shadow: none; }
